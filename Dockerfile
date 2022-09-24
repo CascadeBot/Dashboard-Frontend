@@ -6,7 +6,7 @@ COPY package*.json ./
 RUN npm ci
 
 # build source
-COPY . .
+COPY . ./
 RUN npm run build
 
 # configure ports
