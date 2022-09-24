@@ -2,13 +2,14 @@
 #  - runs npm run lint on the project
 
 name: linting
-on: push
+
+on: pull_request
 
 jobs:
   linting:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Setup Node
       uses: actions/setup-node@v3
       with:
@@ -27,4 +28,3 @@ jobs:
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         report-json: "eslint_report.json"
-        only-pr-files: false
