@@ -1,3 +1,3 @@
 <template>
-  <p>Homepage here</p>
+  <p>Servers here</p>
 </template>

@@ -9,6 +9,10 @@
 import { useQuery } from '@vue/apollo-composable';
 import { getAuthorizeUrl } from '@/queries/auth/getAuthorizeUrl';
 
+definePageMeta({
+  layout: 'loading',
+});
+
 // TODO better UI/UX
 // TODO automatically redirect to requested link
 // TODO use query parameter for redirect

@@ -7,6 +7,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: 'loading',
+});
 const { token, redirect } = useRoute().query;
 // TODO store token and redirect
 // TODO validate redirect

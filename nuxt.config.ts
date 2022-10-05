@@ -22,6 +22,12 @@ export default defineNuxtConfig({
       '@vue/apollo-composable',
     ],
   },
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
   runtimeConfig: {
     public: {
       ...config,
