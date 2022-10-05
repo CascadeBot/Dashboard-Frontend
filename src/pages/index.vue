@@ -1,7 +1,3 @@
 <template>
-  <p
-    class="text-center bg-blue-800 rounded inline-block p-6 m-12 text-white font-bold"
-  >
-    Hi cascade!
-  </p>
+  <h1 class="text-xl font-bold">Hello world (nothing here yet whoops)</h1>
 </template>
