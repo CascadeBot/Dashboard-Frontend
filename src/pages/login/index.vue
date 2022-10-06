@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loading />
     <p v-if="loading">Loading...</p>
     <p v-else-if="error">Errored getting data</p>
     <a v-else :href="result.getOAuthInfo.authorizeUrl">Click to login!</a>
