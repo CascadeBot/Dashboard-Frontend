@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <p>Hello world from login flow</p>
-    <p>Token: {{ token }}</p>
-    <p>redirect: {{ redirect }}</p>
-  </div>
+  <LoadingScreen />
 </template>
 
 <script setup lang="ts">
+import { useLoadingLines } from '~~/src/store/loading';
+
 definePageMeta({
   layout: 'loading',
 });
-const { token, redirect } = useRoute().query;
+useLoadingLines('Storing session token');
 // TODO store token and redirect
 // TODO validate redirect
 </script>

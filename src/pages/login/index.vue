@@ -1,25 +1,29 @@
 <template>
-  <div>
-    <Loading />
-    <p v-if="loading">Loading...</p>
-    <p v-else-if="error">Errored getting data</p>
-    <a v-else :href="result.getOAuthInfo.authorizeUrl">Click to login!</a>
-  </div>
+  <LoadingScreen>
+    <p v-if="error">Errored getting data</p>
+  </LoadingScreen>
 </template>
 <script lang="ts" setup>
 import { useQuery } from '@vue/apollo-composable';
 import { getAuthorizeUrl } from '@/queries/auth/getAuthorizeUrl';
+import { useLoadingLines } from '@/store/loading';
 
 definePageMeta({
   layout: 'loading',
 });
 
-// TODO better UI/UX
-// TODO automatically redirect to requested link
-// TODO use query parameter for redirect
 // TODO validate redirect value
+const { query } = useRoute();
+const { addLine } = useLoadingLines('Retrieving login link');
 
-const { loading, result, error } = useQuery(getAuthorizeUrl, {
-  redirect: '/me',
+const { error, onError, onResult } = useQuery(getAuthorizeUrl, {
+  redirect: query.redirect ?? null,
+});
+onResult(({ data }) => {
+  addLine('redirecting to discord...');
+  window.location.href = data.getOAuthInfo.authorizeUrl;
+});
+onError(() => {
+  addLine('Failed to retrieve login link');
 });
 </script>

@@ -20,24 +20,10 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const cache = new InMemoryCache();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let apolloClient: ApolloClient<any>;
-
-  if (process.server) {
-    apolloClient = new ApolloClient({
-      ssrMode: true,
-      link: httpLink,
-      cache,
-    });
-    nuxtApp.hook('app:rendered', () => {
-      nuxtApp.payload.data.apollo = apolloClient.extract();
-    });
-  } else {
-    apolloClient = new ApolloClient({
-      link: httpLink,
-      cache,
-    });
-  }
+  const apolloClient = new ApolloClient({
+    link: httpLink,
+    cache,
+  });
 
   provideApolloClient(apolloClient);
   nuxtApp.provide('apollo', { DefaultApolloClient, apolloClient });
