@@ -4,6 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  ignorePatterns: ['src/assets/**'],
   extends: [
     'eslint:recommended',
     'plugin:vue/essential',

@@ -4,6 +4,8 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "start": "nuxt start",
+    "prepare": "nuxt prepare",
+
     "lint": "eslint --ext .ts,.js,.vue,.json src/",
     "lint:fix": "eslint --fix --ext .ts,.js,.vue,.json src/",
     "lint:report": "eslint --ext .ts,.js,.vue,.json --output-file eslint_report.json --format json src/"

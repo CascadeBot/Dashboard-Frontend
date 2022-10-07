@@ -20,6 +20,8 @@ jobs:
       run: npm ci
       env:
         CI: TRUE
+    - name: Prepare nuxt for linting
+      run: npm run prepare
     - name: Run ESLint Report
       run: npm run lint:report
       # continue on error, so it still reports it in the next step
