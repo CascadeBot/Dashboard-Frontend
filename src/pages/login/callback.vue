@@ -1,5 +1,5 @@
 <template>
-  <LoadingScreen />
+  <LoadingScreen :error="error.error" />
 </template>
 
 <script setup lang="ts">
@@ -12,9 +12,9 @@ definePageMeta({
 const route = useRoute();
 const { addLine } = useLoadingLines('Storing session token');
 
-const { process } = useStoreSessionProcess((event) => {
+const { process, error } = useStoreSessionProcess((event) => {
   const eventData = sessionEventMap[event];
-  addLine(eventData.text);
+  addLine(eventData.text, eventData.error);
 });
 
 onMounted(() => {

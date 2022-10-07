@@ -5,6 +5,9 @@
         v-for="(line, i) in limitedLines"
         :key="line.id"
         class="transition-all absolute left-0 right-0 duration-300"
+        :class="{
+          'text-red-100': line.error,
+        }"
         :style="getStyles(i)"
       >
         {{ line.text }}

@@ -7,3 +7,8 @@
 body, html {
   @apply bg-slate-700 text-slate-50;
 }
+
+.vue-feather svg {
+  height: 1em !important;
+  width: 1em !important;
+}

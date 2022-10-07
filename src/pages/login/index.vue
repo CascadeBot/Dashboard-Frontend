@@ -1,5 +1,5 @@
 <template>
-  <LoadingScreen>
+  <LoadingScreen :error="errorRef.error">
     <p v-if="false">Errored getting data</p>
   </LoadingScreen>
 </template>
@@ -15,6 +15,9 @@ definePageMeta({
 
 const { query } = useRoute();
 const { addLine } = useLoadingLines('Retrieving login link');
+const errorRef = ref({
+  error: false,
+});
 
 const { onError, onResult, load } = useLazyQuery(getAuthorizeUrl);
 
@@ -24,13 +27,15 @@ onResult(({ data }) => {
 });
 onError(() => {
   // TODO handle errors better
-  addLine('Failed to retrieve login link');
+  errorRef.value.error = true;
+  addLine('Failed to retrieve login link', true);
 });
 
 onMounted(() => {
   const redirect = query.redirect;
   if (!isValidRedirect(redirect)) {
-    addLine('Invalid redirect link');
+    errorRef.value.error = true;
+    addLine('Invalid redirect link', true);
     return;
   }
 

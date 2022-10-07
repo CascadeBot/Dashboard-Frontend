@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 export interface Line {
   id: number;
   text: string;
+  error: boolean;
 }
 
 export const useLoadingStore = defineStore('loading', {
@@ -17,14 +18,16 @@ export const useLoadingStore = defineStore('loading', {
         {
           text,
           id,
+          error: false,
         },
       ];
     },
-    appendLine(text: string) {
+    appendLine(text: string, error = false) {
       const id = ++this._idGen;
       this.lines.unshift({
         text,
         id,
+        error,
       });
     },
     stopScreen() {
@@ -43,8 +46,8 @@ export function useLoadingLines(startText: string) {
     store.stopScreen();
   });
 
-  function addLine(text: string) {
-    store.appendLine(text);
+  function addLine(text: string, error?: boolean) {
+    store.appendLine(text, error);
   }
 
   return {
