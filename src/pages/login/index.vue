@@ -29,7 +29,7 @@ onResult(({ data }) => {
   window.location.href = data.getOAuthInfo.authorizeUrl;
 });
 onError(() => {
-  // TODO handle errors better
+  // TODO handle more specific errors
   errorRef.value.error = true;
   addLine('Failed to retrieve login link', true);
 });

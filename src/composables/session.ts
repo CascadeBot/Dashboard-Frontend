@@ -86,7 +86,7 @@ export function useLoginTokenProcess(cb: (str: SessionErrors) => void) {
   });
 
   onError(() => {
-    // TODO handle different errors
+    // TODO handle more specific errors
     error.value = {
       error: true,
       type: 'failed-exchange',
