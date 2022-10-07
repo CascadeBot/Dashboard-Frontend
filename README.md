@@ -2,13 +2,10 @@
 
 This project is part of Cascade, a discord bot.
 
-frontend service for dashboard, main features:
+This service provides the frontend service for the dashboard. The main features includes:
  - editing and writing custom commands in a discord server
  - no-code editor for basic reply system
  - install extensions from marketplace
 
-## a note on selfhosting
-This service requires configuration in environment or in a `.env` file.
-it also fully relies on the Dashboard-Backend to function.
-
-> **TODO** more instructions in readme on contributing, selfhosting and configuration
+## running for development
+Please check the markdown file at `/docs/development.md` for information on how to run locally.
