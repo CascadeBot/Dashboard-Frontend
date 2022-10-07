@@ -1,6 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const colors = require('tailwindcss/colors');
 
+// delete deprecrated colors
+delete colors.lightBlue;
+delete colors.warmGray;
+delete colors.coolGray;
+delete colors.blueGray;
+delete colors.trueGray;
+
 module.exports = {
   theme: {
     colors: {

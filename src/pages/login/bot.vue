@@ -3,12 +3,24 @@
 </template>
 
 <script setup lang="ts">
-import { useLoadingLines } from '~~/src/store/loading';
+import { useLoadingLines } from '@/store/loading';
 
 definePageMeta({
   layout: 'loading',
 });
-useLoadingLines('Exchanging login token for session');
-// TODO exchange token from session token
-// TODO redirect to /login/callback with redirect and session token
+
+const route = useRoute();
+const { addLine } = useLoadingLines('Exchanging login token for session');
+
+const { process } = useLoginTokenProcess((event) => {
+  const eventData = sessionEventMap[event];
+  addLine(eventData.text);
+});
+
+onMounted(() => {
+  process(
+    route.query.token as string,
+    route.query.redirect as string | undefined,
+  );
+});
 </script>

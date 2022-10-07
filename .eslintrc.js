@@ -21,5 +21,6 @@ module.exports = {
     'prettier/prettier': 'error',
     'vue/multi-word-component-names': 'off',
     'import/no-named-as-default': 'off',
+    'n/no-callback-literal': 'off',
   },
 };
