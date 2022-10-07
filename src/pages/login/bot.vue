@@ -1,5 +1,9 @@
 <template>
-  <LoadingScreen :error="error.error" />
+  <LoadingScreen :error="error.error">
+    <LoadingErrorText :visible="error.error">
+      Whoops, something went wrong with logging you in. Try again later.
+    </LoadingErrorText>
+  </LoadingScreen>
 </template>
 
 <script setup lang="ts">

@@ -1,8 +1,11 @@
 <template>
   <LoadingScreen :error="errorRef.error">
-    <p v-if="false">Errored getting data</p>
+    <LoadingErrorText :visible="errorRef.error">
+      Whoops, something went wrong with logging you in. Try again later.
+    </LoadingErrorText>
   </LoadingScreen>
 </template>
+
 <script lang="ts" setup>
 import { useLazyQuery } from '@vue/apollo-composable';
 import { getAuthorizeUrl } from '@/queries/auth/getAuthorizeUrl';
