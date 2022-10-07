@@ -1,4 +1,5 @@
 version: '3.8'
+name: 'cascade_dash_frontend_dev'
 
 services:
   frontend:
