@@ -1,7 +1,7 @@
 <template>
   <LoadingScreen :error="errorRef.error">
     <LoadingErrorText :visible="errorRef.error">
-      Whoops, something went wrong with logging you in. Try again later.
+      Whoops, something went wrong with logging you in. Please try again later.
     </LoadingErrorText>
   </LoadingScreen>
 </template>
