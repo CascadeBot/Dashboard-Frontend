@@ -6,7 +6,7 @@
   >
     <img
       class="bg-slate-300 h-10 w-10 rounded-full mr-4"
-      src="~/assets/images/logos/cascade.png"
+      src="~/assets/images/logos/cascade.svg"
     />
     <p class="font-bold text-xl text-white mr-5">
       <slot />
