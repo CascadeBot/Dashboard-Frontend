@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body, html {
+  @apply bg-slate-700 text-slate-50;
+}
+
+.vue-feather svg {
+  height: 1em !important;
+  width: 1em !important;
+}

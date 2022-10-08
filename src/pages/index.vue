@@ -1,7 +1,11 @@
 <template>
-  <p
-    class="text-center bg-blue-800 rounded inline-block p-6 m-12 text-white font-bold"
-  >
-    Hi cascade!
-  </p>
+  <div>
+    <p>Homepage here</p>
+    <p>Is logged in: {{ store.authenticated }}</p>
+  </div>
 </template>
+
+<script setup lang="ts">
+import { useSessionStore } from '@/store/session';
+const store = useSessionStore();
+</script>

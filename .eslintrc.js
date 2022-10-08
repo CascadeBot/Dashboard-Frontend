@@ -4,6 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  ignorePatterns: ['src/assets/**'],
   extends: [
     'eslint:recommended',
     'plugin:vue/essential',
@@ -19,5 +20,8 @@ module.exports = {
   plugins: ['vue', '@typescript-eslint'],
   rules: {
     'prettier/prettier': 'error',
+    'vue/multi-word-component-names': 'off',
+    'import/no-named-as-default': 'off',
+    'n/no-callback-literal': 'off',
   },
 };
