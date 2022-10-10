@@ -2,28 +2,27 @@
   <div>
     <transition>
       <div
-        v-if="store.isOpen(props.name)"
+        v-if="open"
         class="fixed top-0 w-screen h-screen left-0 bg-opacity-50 bg-black"
       />
     </transition>
-    <div class="relative z-50">
+    <div class="relative" :class="{ 'z-50': openDelayed }">
       <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useBackdropStore } from '@/store/backdrop';
+import { useBackdropState } from '@/store/backdrop';
 
 interface Props {
   name: string;
 }
 const props = defineProps<Props>();
-
-const store = useBackdropStore();
+const { openDelayed, open } = useBackdropState(props.name);
 </script>
 
-<style>
+<style scoped>
 .v-enter-active,
 .v-leave-active {
   @apply transition-opacity ease-linear duration-100;

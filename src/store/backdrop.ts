@@ -30,3 +30,28 @@ export const useBackdropStore = defineStore('backdrops', {
     },
   },
 });
+
+export function useBackdropState(id: string) {
+  const store = useBackdropStore();
+  const open = computed(() => store.isOpen(id));
+
+  const openDelayed = ref(open.value);
+  const timeout = ref<null | ReturnType<typeof setTimeout>>(null);
+
+  watch(open, (openValue) => {
+    if (timeout.value) clearTimeout(timeout.value);
+    if (!openValue) {
+      timeout.value = setTimeout(() => {
+        openDelayed.value = false;
+        timeout.value = null;
+      }, 100);
+    } else {
+      openDelayed.value = true;
+    }
+  });
+
+  return {
+    open,
+    openDelayed,
+  };
+}

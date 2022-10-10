@@ -1,5 +1,5 @@
 <template>
-  <div class="relative z-50">
+  <div :class="{ 'relative z-50': backdropOpen }">
     <Backdrop name="user-dropdown">
       <Menu v-slot="{ open }">
         <BackdropController name="user-dropdown" :open="open" />
@@ -48,6 +48,8 @@
 
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue';
+import { useBackdropState } from '@/store/backdrop';
+const { openDelayed: backdropOpen } = useBackdropState('user-dropdown');
 
 interface Props {
   user: {

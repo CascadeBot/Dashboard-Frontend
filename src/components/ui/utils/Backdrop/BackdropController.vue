@@ -12,10 +12,11 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   open: false,
 });
+const open = computed(() => props.open);
 
 const store = useBackdropStore();
 
-watchEffect(() => {
-  store.setState(props.name, props.open);
+watch([open], () => {
+  store.setState(props.name, open.value);
 });
 </script>

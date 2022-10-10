@@ -1,5 +1,5 @@
 <template>
-  <Container class="grid grid-cols-3 gap-16 mt-16">
+  <Container spaced class="grid grid-cols-3 gap-16">
     <div class="col-span-2">
       <Heading>Your servers</Heading>
       <Paragraph class="mt-3">

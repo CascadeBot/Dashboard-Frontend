@@ -1,5 +1,5 @@
 <template>
-  <Container>
-    <p>Hi {{ $route.params.guild }}</p>
-  </Container>
+  <ServerNav>
+    <Heading>Your actions</Heading>
+  </ServerNav>
 </template>
