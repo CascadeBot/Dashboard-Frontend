@@ -6,7 +6,11 @@
     />
     <div class="flex-1 text-left flex flex-col">
       <p class="text-white">Cascade Test Server</p>
-      <HoverLine text="Click to switch server" class="text-slate-100">
+      <HoverLine
+        :active="props.open"
+        text="Click to switch server"
+        class="text-slate-100"
+      >
         12k members
       </HoverLine>
     </div>
