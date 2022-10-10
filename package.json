@@ -5,7 +5,6 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "prepare": "nuxt prepare",
-
     "lint": "eslint --ext .ts,.js,.vue,.json src/",
     "lint:fix": "eslint --fix --ext .ts,.js,.vue,.json src/",
     "lint:report": "eslint --ext .ts,.js,.vue,.json --output-file eslint_report.json --format json src/"
@@ -27,6 +26,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.0",
+    "@headlessui/vue": "^1.7.3",
     "@nuxtjs/tailwindcss": "^5.3.3",
     "@pinia/nuxt": "^0.4.2",
     "@vue/apollo-composable": "^4.0.0-beta.1",
@@ -35,6 +35,7 @@
     "graphql-tag": "^2.12.6",
     "joi": "^17.6.2",
     "pinia": "^2.0.22",
+    "short-numbers": "^0.1.1",
     "vue-apollo": "^3.1.0",
     "vue-feather": "^2.0.0",
     "vue3-lottie": "^2.3.0"

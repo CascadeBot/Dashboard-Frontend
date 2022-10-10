@@ -1,8 +1,8 @@
 <template>
-  <div class="flex justify-end items-center">
+  <div class="flex items-center justify-end">
     <p v-if="error">Failed to load account</p>
     <p v-else-if="loading">Loading...</p>
-    <p v-else>{{ result.me.discordId }}</p>
+    <UserDropdown v-else :user="result.me" />
   </div>
 </template>
 
