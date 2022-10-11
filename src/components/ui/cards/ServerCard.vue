@@ -1,7 +1,7 @@
 <template>
   <Link
     type="internal"
-    :to="`/servers/${props.server.discordId}`"
+    :to="serversLinkFromId(props.server.discordId, '/actions')"
     class="flex relative items-center transition-colors select-none duration-100 ease-out cursor-pointer bg-slate-500 p-9 rounded-xl hover:bg-slate-400 group"
   >
     <img class="block h-16 rounded-full mr-9" :src="props.server.avatarUrl" />
@@ -21,6 +21,7 @@
 
 <script setup lang="ts">
 import shortNumbers from 'short-numbers';
+import { serversLinkFromId } from '@/utils/links';
 
 interface Props {
   server: {

@@ -1,5 +1,5 @@
 <template>
-  <ServerNav>
+  <div>
     <Heading>Your actions</Heading>
-  </ServerNav>
+  </div>
 </template>

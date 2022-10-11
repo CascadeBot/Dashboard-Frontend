@@ -3,6 +3,8 @@ import { useSessionStore } from '@/store/session';
 import { isValidRedirect, tokenAndRedirectSchema } from '@/utils/redirect';
 import { exchangeLoginToken } from '@/queries/auth/exchangeLoginToken';
 
+const logoutLink = '/';
+
 type SessionErrors =
   | 'invalid-params'
   | 'invalid-redirect'
@@ -120,5 +122,18 @@ export function useLoginTokenProcess(cb: (str: SessionErrors) => void) {
   return {
     error,
     process,
+  };
+}
+
+export function useLogout() {
+  const store = useSessionStore();
+
+  function logout() {
+    store.clear();
+    window.location.href = logoutLink;
+  }
+
+  return {
+    logout,
   };
 }

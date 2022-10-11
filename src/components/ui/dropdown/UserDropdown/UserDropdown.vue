@@ -22,14 +22,11 @@
               leave-to-class="transform -translate-y-5 opacity-0"
             >
               <MenuItems class="min-w-[15rem] rounded-md bg-slate-300 p-1">
-                <UserDropdownItem>
-                  <p>Account settings</p>
-                </UserDropdownItem>
-                <UserDropdownItem>
-                  <p>Your marketplace</p>
-                </UserDropdownItem>
+                <UserDropdownLink to="/account" type="internal">
+                  Account settings
+                </UserDropdownLink>
                 <UserDropdownDivider />
-                <UserDropdownItem>
+                <UserDropdownItem @click="logout()">
                   <p
                     class="flex items-center text-red-200 group-hover:text-red-100"
                   >
@@ -50,6 +47,7 @@
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue';
 import { useBackdropState } from '@/store/backdrop';
 const { openDelayed: backdropOpen } = useBackdropState('user-dropdown');
+const { logout } = useLogout();
 
 interface Props {
   user: {

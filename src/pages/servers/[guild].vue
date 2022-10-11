@@ -1,8 +1,8 @@
 <template>
-  <div class="min-h-screen w-full">
-    <TopNav v-if="!mustFullscreen" />
-    <slot />
-  </div>
+  <ServerNav v-if="!mustFullscreen">
+    <NuxtPage />
+  </ServerNav>
+  <NuxtPage v-else />
 </template>
 
 <script setup lang="ts">

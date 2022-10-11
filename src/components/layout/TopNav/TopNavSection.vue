@@ -30,7 +30,7 @@ interface Props {
   to: string;
 }
 const props = withDefaults(defineProps<Props>(), {});
-const { isActive } = useLink({ to: props.to });
+const { isActive } = useIsActive(props.to);
 </script>
 
 <style>

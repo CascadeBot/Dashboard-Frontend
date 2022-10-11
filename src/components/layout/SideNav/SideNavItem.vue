@@ -1,7 +1,12 @@
 <template>
   <div class="my-1 flex">
     <div class="w-3 flex items-center justify-start">
-      <div v-if="isActive" class="w-1 rounded h-4 bg-red-300" />
+      <div
+        class="w-1 rounded h-4 bg-red-300 rotate-off"
+        :class="{
+          'rotate-on': isActive,
+        }"
+      />
     </div>
     <Link
       type="internal"
@@ -23,5 +28,18 @@ interface Props {
   icon?: string;
 }
 const props = defineProps<Props>();
-const { isActive } = useLink({ to: props.to });
+const { isActive } = useIsActive(props.to);
 </script>
+
+<style scoped>
+.rotate-off {
+  transform: rotateX(90deg);
+  opacity: 0;
+  transition-property: opacity, transform;
+  @apply duration-200;
+}
+.rotate-on {
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+</style>
