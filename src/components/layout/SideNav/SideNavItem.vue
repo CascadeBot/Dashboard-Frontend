@@ -34,12 +34,11 @@ const { isActive } = useIsActive(props.to);
 <style scoped>
 .rotate-off {
   transform: rotateX(90deg);
-  opacity: 0;
   transition-property: opacity, transform;
-  @apply duration-200;
+  transition-duration: 0ms;
 }
 .rotate-on {
   transform: rotateX(0deg);
-  opacity: 1;
+  @apply duration-200;
 }
 </style>
