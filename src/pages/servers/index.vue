@@ -5,15 +5,18 @@
       <Paragraph class="mt-3">
         All servers you have dashboard access to.
       </Paragraph>
-      <div class="mt-10 space-y-4">
+      <p v-if="loading">loading...</p>
+      <p v-else-if="error">Whoops, errorred</p>
+      <div v-else class="mt-10 space-y-4">
         <ServerCard
+          v-for="guild in result.mutualGuilds.guilds"
+          :key="guild.id"
           :server="{
-            avatarUrl:
-              'https://cdn.discordapp.com/icons/533679825026678784/fe544f20821838caec98d5f7a9df944f.webp?size=96',
-            discordId: '533679825026678784',
-            name: 'Cascade test Server',
-            onlineCount: 16,
-            totalCount: 12623,
+            avatarUrl: guild.icon_url,
+            discordId: guild.id,
+            name: guild.name,
+            onlineCount: guild.online_count,
+            totalCount: guild.member_count,
           }"
         />
       </div>
@@ -32,3 +35,10 @@
     </div>
   </Container>
 </template>
+
+<script setup lang="ts">
+import { useQuery } from '@vue/apollo-composable';
+import { getMutualGuilds } from '@/queries/auth/getMutualGuilds';
+
+const { loading, error, result } = useQuery(getMutualGuilds);
+</script>

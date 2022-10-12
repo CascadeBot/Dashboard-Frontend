@@ -4,7 +4,17 @@
     :to="serversLinkFromId(props.server.discordId, '/actions')"
     class="flex relative items-center transition-colors select-none duration-100 ease-out cursor-pointer bg-slate-500 p-9 rounded-xl hover:bg-slate-400 group"
   >
-    <img class="block h-16 rounded-full mr-9" :src="props.server.avatarUrl" />
+    <img
+      v-if="props.server.avatarUrl"
+      class="block h-16 w-16 rounded-full bg-slate-200 mr-9"
+      :src="props.server.avatarUrl"
+    />
+    <div
+      v-else
+      class="h-16 w-16 rounded-full bg-slate-200 mr-9 flex justify-center items-center text-white text-center text-xl"
+    >
+      <p>{{ discordShortName(props.server.name) }}</p>
+    </div>
     <div class="space-y-4 flex-1">
       <p class="text-2xl text-white">{{ props.server.name }}</p>
       <p class="text-slate-100">
@@ -22,6 +32,13 @@
 <script setup lang="ts">
 import shortNumbers from 'short-numbers';
 import { serversLinkFromId } from '@/utils/links';
+
+function discordShortName(name: string) {
+  return name
+    .split(' ', 3)
+    .map((v) => v[0])
+    .join('');
+}
 
 interface Props {
   server: {
