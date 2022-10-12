@@ -9,7 +9,7 @@
             'bg-opacity-100': open,
           }"
         >
-          <UserDropdownButton :open="open" />
+          <UserDropdownButton :user="props.user" :open="open" />
         </MenuButton>
         <div class="absolute bottom-0 left-0 right-0">
           <div class="absolute right-0 top-1">
@@ -52,7 +52,12 @@ const { logout } = useLogout();
 interface Props {
   user: {
     id: string;
-    discordId: string;
+    discord: {
+      id: string;
+      avatar_url: string;
+      discriminator: string;
+      name: string;
+    };
   };
 }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
