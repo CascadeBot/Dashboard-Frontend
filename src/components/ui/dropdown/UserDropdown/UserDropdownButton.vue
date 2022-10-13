@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center items-center">
     <img
-      :src="props.user.discord.avatar_url"
+      :src="props.user.discord.avatarUrl"
       class="rounded-full h-8 w-8 border-slate-700 border-2"
     />
     <p class="text-white flex-1 mx-2">
@@ -26,7 +26,7 @@ interface Props {
     id: string;
     discord: {
       id: string;
-      avatar_url: string;
+      avatarUrl: string;
       discriminator: string;
       name: string;
     };

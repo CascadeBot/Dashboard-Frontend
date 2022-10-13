@@ -54,7 +54,7 @@ interface Props {
     id: string;
     discord: {
       id: string;
-      avatar_url: string;
+      avatarUrl: string;
       discriminator: string;
       name: string;
     };
