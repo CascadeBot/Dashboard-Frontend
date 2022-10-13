@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TopNavSection to="/servers">servers</TopNavSection>
-    <TopNavSection to="/backstage">backstage</TopNavSection>
+    <TopNavSection to="/servers">Servers</TopNavSection>
+    <TopNavSection to="/backstage">Backstage</TopNavSection>
   </div>
 </template>
 
