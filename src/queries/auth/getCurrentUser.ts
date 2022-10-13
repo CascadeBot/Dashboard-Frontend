@@ -6,7 +6,7 @@ export const getCurrentUser = gql`
       id
       discord {
         id
-        avatar_url
+        avatarUrl
         discriminator
         name
       }

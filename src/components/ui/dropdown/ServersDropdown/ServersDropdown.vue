@@ -9,7 +9,7 @@
             'bg-slate-300': open,
           }"
         >
-          <ServersDropdownButton :open="open" />
+          <ServersDropdownButton :guild="guild" :open="open" />
         </MenuButton>
         <div class="absolute bottom-0 left-0 right-0">
           <div class="absolute right-0 left-0 mt-1">
@@ -22,9 +22,7 @@
               leave-to-class="transform -translate-y-5 opacity-0"
             >
               <MenuItems class="min-w-[15rem] rounded-md bg-slate-300 p-1">
-                <ServersDropdownItem>
-                  <p>Hello world</p>
-                </ServersDropdownItem>
+                <ServersDropdownContent />
               </MenuItems>
             </transition>
           </div>
@@ -37,5 +35,14 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue';
 import { useBackdropState } from '@/store/backdrop';
+import { useGuildStore } from '@/store/guilds';
 const { openDelayed: backdropOpen } = useBackdropState('servers-dropdown');
+
+interface Props {
+  guildId: string;
+}
+const props = defineProps<Props>();
+const store = useGuildStore();
+
+const guild = computed(() => store.get(props.guildId));
 </script>

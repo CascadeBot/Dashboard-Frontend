@@ -7,17 +7,11 @@
       </Paragraph>
       <p v-if="loading">loading...</p>
       <p v-else-if="error">Whoops, errorred</p>
-      <div v-else class="mt-10 space-y-4">
+      <div v-else-if="result" class="mt-10 space-y-4">
         <ServerCard
           v-for="guild in result.mutualGuilds.guilds"
           :key="guild.id"
-          :server="{
-            avatarUrl: guild.icon_url,
-            discordId: guild.id,
-            name: guild.name,
-            onlineCount: guild.online_count,
-            totalCount: guild.member_count,
-          }"
+          :server="guild"
         />
       </div>
     </div>
@@ -37,8 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { useQuery } from '@vue/apollo-composable';
-import { getMutualGuilds } from '@/queries/auth/getMutualGuilds';
+import { useGetGuilds } from '@/store/guilds';
 
-const { loading, error, result } = useQuery(getMutualGuilds);
+const { loading, error, result } = useGetGuilds();
 </script>

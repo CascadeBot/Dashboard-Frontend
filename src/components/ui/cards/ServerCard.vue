@@ -1,24 +1,15 @@
 <template>
   <Link
     type="internal"
-    :to="serversLinkFromId(props.server.discordId, '/actions')"
+    :to="serversLinkFromId(props.server.id, '/actions')"
     class="flex relative items-center transition-colors select-none duration-100 ease-out cursor-pointer bg-slate-500 p-9 rounded-xl hover:bg-slate-400 group"
   >
-    <img
-      v-if="props.server.avatarUrl"
-      class="block h-16 w-16 rounded-full bg-slate-200 mr-9"
-      :src="props.server.avatarUrl"
-    />
-    <div
-      v-else
-      class="h-16 w-16 rounded-full bg-slate-200 mr-9 flex justify-center items-center text-white text-center text-xl"
-    >
-      <p>{{ discordShortName(props.server.name) }}</p>
-    </div>
+    <GuildIcon :guild="props.server" class="mr-9" />
     <div class="space-y-4 flex-1">
       <p class="text-2xl text-white">{{ props.server.name }}</p>
       <p class="text-slate-100">
-        {{ counts.online }} online <Dot /> {{ counts.total }} members
+        {{ guildNumbers.online }} online <Dot />
+        {{ guildNumbers.total }} members
       </p>
     </div>
     <div
@@ -30,28 +21,17 @@
 </template>
 
 <script setup lang="ts">
-import shortNumbers from 'short-numbers';
 import { serversLinkFromId } from '@/utils/links';
-
-function discordShortName(name: string) {
-  return name
-    .split(' ', 3)
-    .map((v) => v[0])
-    .join('');
-}
 
 interface Props {
   server: {
-    avatarUrl: string;
+    iconUrl?: string;
     name: string;
-    discordId: string;
+    id: string;
     onlineCount: number;
-    totalCount: number;
+    memberCount: number;
   };
 }
 const props = defineProps<Props>();
-const counts = computed(() => ({
-  online: shortNumbers(props.server.onlineCount),
-  total: shortNumbers(props.server.totalCount),
-}));
+const { guildNumbers } = useGuildNumbers(props.server);
 </script>

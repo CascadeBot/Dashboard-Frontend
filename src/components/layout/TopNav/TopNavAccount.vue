@@ -10,5 +10,6 @@
 import { useQuery } from '@vue/apollo-composable';
 import { getCurrentUser } from '@/queries/auth/getCurrentUser';
 
+// TODO better state handling (loading state, error state)
 const { loading, error, result } = useQuery(getCurrentUser);
 </script>

@@ -3,7 +3,7 @@
     <SideNavContainer>
       <template #side>
         <SideNav>
-          <ServersDropdown />
+          <ServersDropdown :guild-id="($route.params.guild as string)" />
           <SideNavCategory name="Your actions">
             <SideNavItem :to="serversLink($route, '/actions')" icon="disc">
               Actions

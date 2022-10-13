@@ -1,17 +1,14 @@
 <template>
   <div class="flex items-center py-2">
-    <img
-      src="~/assets/images/logos/cascade.svg"
-      class="rounded-full h-12 w-12 mr-4"
-    />
+    <GuildIcon :guild="props.guild" size="medium" class="mr-4" />
     <div class="flex-1 text-left flex flex-col">
-      <p class="text-white">Cascade Test Server</p>
+      <p class="text-white">{{ props.guild?.name || 'Unknown server' }}</p>
       <HoverLine
         :active="props.open"
         text="Click to switch server"
         class="text-slate-100"
       >
-        12k members
+        {{ guildNumbers.total }} members
       </HoverLine>
     </div>
     <vue-feather
@@ -23,9 +20,18 @@
     />
   </div>
 </template>
+
 <script setup lang="ts">
 interface Props {
   open: boolean;
+  guild?: {
+    iconUrl?: string;
+    name: string;
+    id: string;
+    onlineCount: number;
+    memberCount: number;
+  };
 }
 const props = defineProps<Props>();
+const { guildNumbers } = useGuildNumbers(props.guild);
 </script>
