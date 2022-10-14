@@ -1,8 +1,19 @@
 <template>
-  <ServerNav v-if="!mustFullscreen">
-    <NuxtPage />
-  </ServerNav>
-  <NuxtPage v-else />
+  <Boundary>
+    <ServerNav v-if="!mustFullscreen">
+      <NuxtPage />
+    </ServerNav>
+    <NuxtPage v-else />
+    <template #pending>
+      <p>loading (full page)</p>
+    </template>
+    <template #error>
+      <div>
+        <p>error (full page)</p>
+        <RetryButton />
+      </div>
+    </template>
+  </Boundary>
 </template>
 
 <script setup lang="ts">

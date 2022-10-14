@@ -36,6 +36,10 @@
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue';
 import { useBackdropState } from '@/store/backdrop';
 import { useGuildStore } from '@/store/guilds';
+import {
+  ApiGetMutualGuilds,
+  getMutualGuilds,
+} from '@/queries/auth/getMutualGuilds';
 const { openDelayed: backdropOpen } = useBackdropState('servers-dropdown');
 
 interface Props {
@@ -44,5 +48,10 @@ interface Props {
 const props = defineProps<Props>();
 const store = useGuildStore();
 
+const { data } = await useAsyncQuery<ApiGetMutualGuilds>(
+  'guilds',
+  getMutualGuilds,
+);
+if (data.value) store.setGuilds(data.value.mutualGuilds.guilds);
 const guild = computed(() => store.get(props.guildId));
 </script>

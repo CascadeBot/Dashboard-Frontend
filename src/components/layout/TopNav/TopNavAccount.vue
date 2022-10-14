@@ -1,7 +1,9 @@
 <template>
   <div class="flex items-center justify-end">
-    <p v-if="error">Failed to load account</p>
-    <p v-else-if="loading">Loading...</p>
+    <div v-if="!store.authenticated || error">
+      <p>Login button here</p>
+    </div>
+    <Loading v-else-if="loading" />
     <UserDropdown v-else-if="result" :user="result.me" />
   </div>
 </template>
@@ -12,7 +14,12 @@ import {
   ApiGetCurrentUser,
   getCurrentUser,
 } from '@/queries/auth/getCurrentUser';
+import { useRefreshSession, useSessionStore } from '@/store/session';
 
-// TODO better state handling (loading state, error state)
-const { loading, error, result } = useQuery<ApiGetCurrentUser>(getCurrentUser);
+const store = useSessionStore();
+const { loading, error, result, refetch } =
+  useQuery<ApiGetCurrentUser>(getCurrentUser);
+useRefreshSession(() => {
+  refetch();
+});
 </script>

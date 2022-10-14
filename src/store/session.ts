@@ -6,10 +6,11 @@ interface Store {
 }
 
 export const useSessionStore = defineStore('session', {
-  state: (): { store: RemovableRef<Store> } => ({
+  state: (): { store: RemovableRef<Store>; nonce: number } => ({
     store: useStorage('cascade:dashboard:session', {
       token: null,
     }),
+    nonce: 1,
   }),
   getters: {
     token(): Store['token'] {
@@ -26,5 +27,16 @@ export const useSessionStore = defineStore('session', {
     clear() {
       this.store.token = null;
     },
+    refreshUser() {
+      this.nonce = this.nonce++;
+    },
   },
 });
+
+export function useRefreshSession(cb: () => void) {
+  const store = useSessionStore();
+  const nonce = computed(() => store.nonce);
+  watch(nonce, () => {
+    cb();
+  });
+}
