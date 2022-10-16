@@ -1,6 +1,8 @@
 <template>
   <div class="min-h-screen w-full">
-    <TopNav />
-    <slot />
+    <ClientOnly>
+      <TopNav />
+      <slot />
+    </ClientOnly>
   </div>
 </template>
