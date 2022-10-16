@@ -3,6 +3,9 @@ import eslint from 'vite-plugin-eslint';
 const config = {
   // graphql endpoint, must NOT end with slash
   graphqlUrl: process.env.GRAPHQL_PATH || 'http://localhost:8081/graphql',
+
+  // base path, does not need rewriting behind a proxy, must end with slash
+  basePath: process.env.BASE_PATH || '/',
 };
 
 export default defineNuxtConfig({
@@ -29,6 +32,9 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  router: {
+    base: config.basePath,
+  },
   runtimeConfig: {
     public: {
       ...config,
