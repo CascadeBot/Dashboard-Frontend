@@ -9,6 +9,9 @@ const config = {
 };
 
 export default defineNuxtConfig({
+  app: {
+    baseURL: config.basePath,
+  },
   ssr: false, // fetching only called on client
   srcDir: 'src',
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/nuxt'],
@@ -32,9 +35,6 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  router: {
-    base: config.basePath,
-  },
   runtimeConfig: {
     public: {
       ...config,
