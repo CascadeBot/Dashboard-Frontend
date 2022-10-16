@@ -5,7 +5,7 @@ const config = {
   graphqlUrl: process.env.GRAPHQL_PATH || 'http://localhost:8081/graphql',
 
   // base path, does not need rewriting behind a proxy, must end with slash
-  basePath: process.env.BASE_PATH || '/',
+  basePath: process.env.NUXT_APP_BASE_URL || '/',
 };
 
 export default defineNuxtConfig({
