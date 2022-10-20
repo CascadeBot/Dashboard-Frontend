@@ -1,7 +1,9 @@
 <template>
   <div class="min-h-screen w-full">
-    <TopNav v-if="!mustFullscreen" />
-    <slot />
+    <ClientOnly>
+      <TopNav v-if="!mustFullscreen" />
+      <slot />
+    </ClientOnly>
   </div>
 </template>
 
