@@ -12,6 +12,9 @@
 </template>
 
 <script setup lang="ts">
+// TODO store component in boundary store
+// TODO error boundary
+// TODO compute view state
 const error = ref({ error: false, message: '' });
 onErrorCaptured((e) => {
   error.value.message = e.message;
