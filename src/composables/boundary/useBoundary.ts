@@ -4,7 +4,10 @@ import { boundaryDivider, boundarySymbol } from '@/store/boundary';
 
 // computes boundary key and returns it (uses provided key from parents)
 export function useBoundaryKey(key?: MaybeRef<string>): ComputedRef<string> {
-  const injectedKey = inject<ComputedRef<string>>(boundarySymbol);
+  const injectedKey = inject<ComputedRef<string> | undefined>(
+    boundarySymbol,
+    undefined,
+  );
   const computedKey = computed(() => {
     const suffixKey = key ? unref(key) : '';
     const prefixKey = injectedKey ? unref(injectedKey) : '';
@@ -25,5 +28,7 @@ export function useBoundary(key?: string) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const storageKey = useBoundaryKey(key);
   // TODO provide controls
-  return {};
+  return {
+    key: storageKey,
+  };
 }

@@ -1,5 +1,5 @@
 <template>
-  <Boundary>
+  <Boundary id="page">
     <ServerNav v-if="!mustFullscreen">
       <NuxtPage />
     </ServerNav>

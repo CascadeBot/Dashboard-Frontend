@@ -1,5 +1,5 @@
 <template>
-  <Boundary>
+  <Boundary id="page">
     <ServersPartial />
 
     <template #pending>

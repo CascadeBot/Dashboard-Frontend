@@ -48,16 +48,15 @@ export function useGetGuilds() {
 }
 
 // gets mutual guilds but also stores it in a store (async version)
-export async function useAsyncGetGuilds() {
+export function useAsyncGetGuilds() {
   const store = useGuildStore();
 
-  const { data } = await useAsyncQuery<ApiGetMutualGuilds>(
-    'guilds',
-    getMutualGuilds,
-  );
-  store.setGuilds(data.value.mutualGuilds.guilds);
+  const { result, onResult } = useQuery<ApiGetMutualGuilds>(getMutualGuilds);
+  onResult(({ data }) => {
+    store.setGuilds(data.mutualGuilds.guilds);
+  });
 
   return {
-    data,
+    result,
   };
 }

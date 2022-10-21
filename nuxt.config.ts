@@ -25,6 +25,9 @@ export default defineNuxtConfig({
       '@vue/apollo-composable',
     ],
   },
+  imports: {
+    dirs: ['composables/*/index.ts'],
+  },
   components: [
     {
       path: '~/components',

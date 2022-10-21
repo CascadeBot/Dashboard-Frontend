@@ -1,5 +1,5 @@
 <template>
-  <Boundary>
+  <Boundary id="guild">
     <Heading>Your actions</Heading>
     <ActionsPartial />
 
