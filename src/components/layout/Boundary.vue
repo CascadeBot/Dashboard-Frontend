@@ -2,13 +2,18 @@
   <div>
     <slot v-if="viewState.error" name="error" />
     <slot v-else-if="viewState.pending" name="pending" />
-    <div v-show="viewState.completed">
-      <slot />
+    <div v-show="viewState.completed || props.show">
+      <slot
+        :pending="viewState.pending"
+        :completed="viewState.completed"
+        :error="viewState.error"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+// NOTE - when using the slot api, make sure to always mount (v-show) the components that do requests
 import {
   injectBoundaryKey,
   useBoundaryKey,
@@ -17,6 +22,7 @@ import { useBoundaryStore } from '@/store/boundary';
 
 interface Props {
   id: string;
+  show?: boolean;
 }
 const props = defineProps<Props>();
 
@@ -65,5 +71,4 @@ const viewState = computed(() => {
 watchEffect(() => {
   if (viewState.value.completed && hasMounted.value) hasHadResult.value = true;
 });
-// TODO error boundary
 </script>

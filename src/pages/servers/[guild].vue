@@ -5,7 +5,7 @@
     </ServerNav>
     <NuxtPage v-else />
     <template #pending>
-      <p>loading (full page)</p>
+      <SidebarSkeleton />
     </template>
     <template #error>
       <div>

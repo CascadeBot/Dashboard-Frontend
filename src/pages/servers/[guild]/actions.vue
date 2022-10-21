@@ -4,7 +4,7 @@
     <ActionsPartial />
 
     <template #pending>
-      <p>loading (actions page)</p>
+      <ActionsSkeleton />
     </template>
     <template #error>
       <div>

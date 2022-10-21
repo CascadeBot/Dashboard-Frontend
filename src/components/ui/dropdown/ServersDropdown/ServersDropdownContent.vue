@@ -16,9 +16,6 @@
 <script setup lang="ts">
 import { useGetGuilds } from '@/store/guilds';
 
-// TODO show guilds in scrollable area
-// TODO loading & error states
-
 // this is cached by graphql client, so its safe to call multiple times
 const { result, error, loading } = useGetGuilds();
 </script>

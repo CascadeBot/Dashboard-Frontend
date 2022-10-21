@@ -32,4 +32,6 @@
 import { useAsyncGetGuilds } from '@/store/guilds';
 
 const { data } = useAsyncGetGuilds();
+
+// TODO make the add to server link work
 </script>

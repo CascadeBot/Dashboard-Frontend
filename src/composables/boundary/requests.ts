@@ -2,7 +2,6 @@ import { useLazyQuery } from '@vue/apollo-composable';
 import { VariablesParameter } from '@vue/apollo-composable/dist/useQuery';
 import { DocumentNode } from 'graphql';
 
-// TODO handle refetching from not within cache
 export function useGqlQuery<T>(
   key: string,
   query: DocumentNode,

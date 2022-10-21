@@ -48,7 +48,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         // if there is an invalid token error, clear login session as its no longer valid
         const store = useSessionStore();
         store.clear();
-        // TODO navigate auth heavy pages to login screen when not logged in
       }
     }
   });
