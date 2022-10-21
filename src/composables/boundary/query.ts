@@ -21,6 +21,7 @@ export function useBoundaryFetch<T>(key: string, query: () => Promise<T>) {
   const data = ref<T | null>(null) as Ref<T | null>;
   const pending = ref(true);
   const errored = ref(false);
+  let resultCb: ((params: { data: T }) => void) | null = null;
 
   // handle query
   function handleQuery(promise: Promise<T>) {
@@ -33,6 +34,7 @@ export function useBoundaryFetch<T>(key: string, query: () => Promise<T>) {
 
     promise
       .then((v) => {
+        if (resultCb) resultCb({ data: v });
         if (queryState.value) queryState.value.pending = false;
         pending.value = false;
         data.value = v;
@@ -64,9 +66,15 @@ export function useBoundaryFetch<T>(key: string, query: () => Promise<T>) {
     }
   });
 
+  // helpers
+  function onResult(cb: (data: { data: T }) => void) {
+    resultCb = cb;
+  }
+
   return {
     pending,
     errored,
     data,
+    onResult,
   };
 }

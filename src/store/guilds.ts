@@ -51,12 +51,15 @@ export function useGetGuilds() {
 export function useAsyncGetGuilds() {
   const store = useGuildStore();
 
-  const { result, onResult } = useQuery<ApiGetMutualGuilds>(getMutualGuilds);
+  const { data, onResult } = useGqlQuery<ApiGetMutualGuilds>(
+    'mutual_servers',
+    getMutualGuilds,
+  );
   onResult(({ data }) => {
     store.setGuilds(data.mutualGuilds.guilds);
   });
 
   return {
-    result,
+    data,
   };
 }

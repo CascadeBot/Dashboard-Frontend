@@ -7,7 +7,7 @@
       </Paragraph>
       <div class="mt-10 space-y-4">
         <ServerCard
-          v-for="guild in result?.mutualGuilds.guilds"
+          v-for="guild in data?.mutualGuilds.guilds"
           :key="guild.id"
           :guild="guild"
         />
@@ -31,5 +31,5 @@
 <script setup lang="ts">
 import { useAsyncGetGuilds } from '@/store/guilds';
 
-const { result } = useAsyncGetGuilds();
+const { data } = useAsyncGetGuilds();
 </script>

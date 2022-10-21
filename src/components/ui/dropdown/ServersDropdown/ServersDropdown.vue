@@ -48,9 +48,9 @@ interface Props {
 const props = defineProps<Props>();
 const store = useGuildStore();
 
-const { data } = useGqlQuery<ApiGetMutualGuilds>('guilds', getMutualGuilds);
-watchEffect(() => {
-  if (data.value) store.setGuilds(data.value.mutualGuilds.guilds);
+const { onResult } = useGqlQuery<ApiGetMutualGuilds>('guilds', getMutualGuilds);
+onResult(({ data }) => {
+  store.setGuilds(data.mutualGuilds.guilds);
 });
 const guild = computed(() => store.get(props.guildId));
 </script>

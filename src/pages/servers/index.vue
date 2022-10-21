@@ -3,7 +3,7 @@
     <ServersPartial />
 
     <template #pending>
-      <p>loading</p>
+      <ServersSkeleton />
     </template>
     <template #error>
       <p>error</p>
