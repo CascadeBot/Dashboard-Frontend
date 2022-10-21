@@ -22,4 +22,5 @@ const store = useSessionStore();
 // TODO nuxt error layout (fallback)
 // TODO nuxt 404 layout (fallback)
 // TODO add icons for sidenav and topnav
+// TODO skeleton animations
 </script>
