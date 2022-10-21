@@ -34,7 +34,6 @@
 
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue';
-import { useQuery } from '@vue/apollo-composable';
 import { useBackdropState } from '@/store/backdrop';
 import { useGuildStore } from '@/store/guilds';
 import {
@@ -49,9 +48,9 @@ interface Props {
 const props = defineProps<Props>();
 const store = useGuildStore();
 
-const { onResult } = useQuery<ApiGetMutualGuilds>(getMutualGuilds);
-onResult(({ data }) => {
-  store.setGuilds(data.mutualGuilds.guilds);
+const { data } = useGqlQuery<ApiGetMutualGuilds>('guilds', getMutualGuilds);
+watchEffect(() => {
+  if (data.value) store.setGuilds(data.value.mutualGuilds.guilds);
 });
 const guild = computed(() => store.get(props.guildId));
 </script>

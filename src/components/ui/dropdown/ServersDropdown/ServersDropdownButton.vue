@@ -33,5 +33,5 @@ interface Props {
   };
 }
 const props = defineProps<Props>();
-const { guildNumbers } = useGuildNumbers(props.guild);
+const { guildNumbers } = useGuildNumbers(props);
 </script>

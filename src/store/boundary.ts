@@ -37,7 +37,7 @@ export const useBoundaryStore = defineStore('boundary', {
         const startsWithKey = key + ':';
         const mustNotStartWith = state.boundaries
           .filter((v) => v.key.startsWith(startsWithKey))
-          .map((v) => v.key);
+          .map((v) => v.key + ':');
 
         return state.queue.filter((v) => {
           if (!v.key.startsWith(startsWithKey)) return false;

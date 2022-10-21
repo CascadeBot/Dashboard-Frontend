@@ -1,6 +1,10 @@
 import { ComputedRef } from 'vue';
 import { MaybeRef } from '@vueuse/core';
-import { boundaryDivider, boundarySymbol } from '@/store/boundary';
+import {
+  boundaryDivider,
+  boundarySymbol,
+  useBoundaryStore,
+} from '@/store/boundary';
 
 // computes boundary key and returns it (uses provided key from parents)
 export function useBoundaryKey(key?: MaybeRef<string>): ComputedRef<string> {
@@ -25,10 +29,13 @@ export function injectBoundaryKey(key: MaybeRef<string>) {
 
 // controls for a boundary, key can be optional and will target closest parent boundary
 export function useBoundary(key?: string) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const storageKey = useBoundaryKey(key);
-  // TODO provide controls
+  const store = useBoundaryStore();
+
   return {
-    key: storageKey,
+    refresh() {
+      const queries = store.queriesUnderBoundary(storageKey.value);
+      queries.forEach((v) => v.nonce++); // incrementing the nonce will force a refresh
+    },
   };
 }

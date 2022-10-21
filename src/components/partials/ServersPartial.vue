@@ -9,7 +9,7 @@
         <ServerCard
           v-for="guild in result?.mutualGuilds.guilds"
           :key="guild.id"
-          :server="guild"
+          :guild="guild"
         />
       </div>
     </div>

@@ -1,7 +1,5 @@
 <template>
   <div>
-    <pre>{{ JSON.stringify(queries, null, 2) }}</pre>
-    <pre>hasHadResult: {{ hasHadResult }}</pre>
     <slot v-if="viewState.error" name="error" />
     <slot v-else-if="viewState.pending" name="pending" />
     <div v-show="viewState.completed">
@@ -11,7 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import { injectBoundaryKey } from '@/composables/boundary/useBoundary';
+import {
+  injectBoundaryKey,
+  useBoundaryKey,
+} from '@/composables/boundary/useBoundary';
 import { useBoundaryStore } from '@/store/boundary';
 
 interface Props {
@@ -20,7 +21,7 @@ interface Props {
 const props = defineProps<Props>();
 
 injectBoundaryKey(props.id);
-const { key } = useBoundary(props.id);
+const key = useBoundaryKey(props.id);
 
 // state
 const hasHadResult = ref(false);

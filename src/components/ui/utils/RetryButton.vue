@@ -1,7 +1,7 @@
 <template>
-  <button>Retry</button>
+  <button @click="refresh()">Retry</button>
 </template>
 
 <script setup lang="ts">
-// const { refresh } = useBoundary();
+const { refresh } = useBoundary();
 </script>
