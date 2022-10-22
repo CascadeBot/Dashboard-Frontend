@@ -1,5 +1,5 @@
 <template>
-  <Boundary id="page">
+  <PageBoundary>
     <ServerNav v-if="!mustFullscreen">
       <NuxtPage />
     </ServerNav>
@@ -13,10 +13,14 @@
         <RetryButton />
       </div>
     </template>
-  </Boundary>
+  </PageBoundary>
 </template>
 
 <script setup lang="ts">
+definePage().needsAuth().build();
+
 const route = useRoute();
 const mustFullscreen = computed(() => route.meta?.fullscreen === true);
+
+// TODO make this 404 when accessed directly
 </script>

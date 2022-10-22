@@ -45,6 +45,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         return false;
       });
       if (tokenError) {
+        if (!process.client) return;
         // if there is an invalid token error, clear login session as its no longer valid
         const store = useSessionStore();
         store.clear();

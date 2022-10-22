@@ -10,3 +10,7 @@
     </template>
   </Boundary>
 </template>
+
+<script setup lang="ts">
+definePage().needsAuth().build();
+</script>

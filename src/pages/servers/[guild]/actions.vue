@@ -1,5 +1,5 @@
 <template>
-  <Boundary id="guild">
+  <GuildBoundary>
     <Heading>Your actions</Heading>
     <ActionsPartial />
 
@@ -12,5 +12,9 @@
         <RetryButton />
       </div>
     </template>
-  </Boundary>
+  </GuildBoundary>
 </template>
+
+<script setup lang="ts">
+definePage().needsAuth().build();
+</script>
