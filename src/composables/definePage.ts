@@ -1,3 +1,5 @@
+import { useSessionStore } from '../store/session';
+
 interface Meta {
   fullscreen?: boolean;
   needsAuth?: boolean;
@@ -17,6 +19,13 @@ export function definePage() {
     },
     build() {
       definePageMeta(obj);
+      const store = useSessionStore();
+      onMounted(() => {
+        if (!store.authenticated) {
+          const { login } = useLogin();
+          login();
+        }
+      });
     },
   };
 }

@@ -16,7 +16,6 @@ const store = useSessionStore();
 // TODO make dropdown guild selector
 // TODO redirect homepage (current file) to /servers
 // TODO refresh should not fetch from graphql cache
-// TODO redirect to login on auth heavy pages
 // TODO handle cancel button on discord login
 // TODO nuxt error boundary on <Boundary />
 // TODO nuxt error layout (fallback)

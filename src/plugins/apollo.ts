@@ -49,6 +49,13 @@ export default defineNuxtPlugin((nuxtApp) => {
         // if there is an invalid token error, clear login session as its no longer valid
         const store = useSessionStore();
         store.clear();
+
+        // check if auth heavy page, if it is then we should redirect to login
+        const route = useRoute();
+        if (route.meta.needsAuth) {
+          const { login } = useLogin();
+          login();
+        }
       }
     }
   });

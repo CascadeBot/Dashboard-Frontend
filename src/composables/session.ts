@@ -137,3 +137,25 @@ export function useLogout() {
     logout,
   };
 }
+
+export function useLogin() {
+  const route = useRoute();
+  const router = useRouter();
+  const config = useRuntimeConfig();
+
+  return {
+    login(withRedirect = true) {
+      if (!withRedirect) {
+        router.push('/login');
+        return;
+      }
+
+      router.push({
+        path: '/login',
+        query: {
+          redirect: config.app.baseURL.slice(0, -1) + route.path,
+        },
+      });
+    },
+  };
+}
