@@ -7,9 +7,10 @@
     <template #pending>
       <SidebarSkeleton />
     </template>
-    <template #error>
+    <template #error="{ error }">
       <div>
         <p>error (full page)</p>
+        <p>{{ error }}</p>
         <RetryButton />
       </div>
     </template>

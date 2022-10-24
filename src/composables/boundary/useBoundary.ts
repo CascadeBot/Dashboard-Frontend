@@ -7,7 +7,10 @@ import {
 } from '@/store/boundary';
 
 // computes boundary key and returns it (uses provided key from parents)
-export function useBoundaryKey(key?: MaybeRef<string>): ComputedRef<string> {
+export function useBoundaryKey(
+  key?: MaybeRef<string>,
+  isStaticKey = false,
+): ComputedRef<string> {
   const injectedKey = inject<ComputedRef<string> | undefined>(
     boundarySymbol,
     undefined,
@@ -16,6 +19,8 @@ export function useBoundaryKey(key?: MaybeRef<string>): ComputedRef<string> {
     const suffixKey = key ? unref(key) : '';
     const prefixKey = injectedKey ? unref(injectedKey) : '';
     const divider = suffixKey && prefixKey ? boundaryDivider : '';
+
+    if (isStaticKey) return suffixKey;
     return prefixKey + divider + suffixKey;
   });
   return computedKey;

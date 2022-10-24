@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot v-if="viewState.error" name="error" />
+    <slot v-if="viewState.error" :error="viewState.error" name="error" />
     <slot v-else-if="viewState.pending" name="pending" />
     <div v-show="viewState.completed || props.show">
       <slot

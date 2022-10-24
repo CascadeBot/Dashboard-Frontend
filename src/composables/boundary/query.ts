@@ -2,8 +2,16 @@ import { Ref } from 'vue';
 import { useBoundaryKey } from './useBoundary';
 import { useBoundaryStore } from '@/store/boundary';
 
-export function useBoundaryFetch<T>(key: string, query: () => Promise<T>) {
-  const storageKey = useBoundaryKey(key);
+export interface BoundaryFetchSettings {
+  staticKey?: boolean;
+}
+
+export function useBoundaryFetch<T>(
+  key: string,
+  query: (refreshed: boolean) => Promise<T>,
+  settings: BoundaryFetchSettings = {},
+) {
+  const storageKey = useBoundaryKey(key, settings.staticKey ?? false);
   const store = useBoundaryStore();
   const queryState = computed(() => store.getQuery(storageKey.value));
 
@@ -52,16 +60,16 @@ export function useBoundaryFetch<T>(key: string, query: () => Promise<T>) {
   watchEffect(() => {
     if (queryState.value && !started.value) {
       started.value = true;
-      handleQuery(query());
+      handleQuery(query(false));
     }
   });
-  handleQuery(query());
+  handleQuery(query(false));
   watch([store], () => {
     if (!queryState.value) return;
 
     // if nonce changes, a refresh is requested
     if (queryState.value.nonce !== lastNonce.value) {
-      handleQuery(query());
+      handleQuery(query(true));
       lastNonce.value = queryState.value.nonce;
     }
   });
@@ -70,11 +78,15 @@ export function useBoundaryFetch<T>(key: string, query: () => Promise<T>) {
   function onResult(cb: (data: { data: T }) => void) {
     resultCb = cb;
   }
+  function refetch() {
+    handleQuery(query(true));
+  }
 
   return {
     pending,
     errored,
     data,
     onResult,
+    refetch,
   };
 }

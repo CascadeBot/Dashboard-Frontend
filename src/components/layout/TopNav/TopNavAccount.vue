@@ -1,15 +1,14 @@
 <template>
   <div class="flex items-center justify-end">
-    <div v-if="!store.authenticated || error">
+    <Loading v-if="pending && store.authenticated" />
+    <div v-else-if="!store.authenticated || !data">
       <p>Login button here</p>
     </div>
-    <Loading v-else-if="loading" />
-    <UserDropdown v-else-if="result" :user="result.me" />
+    <UserDropdown v-else-if="data" :user="data.me" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useQuery } from '@vue/apollo-composable';
 import {
   ApiGetCurrentUser,
   getCurrentUser,
@@ -17,8 +16,14 @@ import {
 import { useRefreshSession, useSessionStore } from '@/store/session';
 
 const store = useSessionStore();
-const { loading, error, result, refetch } =
-  useQuery<ApiGetCurrentUser>(getCurrentUser);
+const { data, pending, refetch } = useGqlQuery<ApiGetCurrentUser>(
+  'page:user',
+  getCurrentUser,
+  {},
+  {
+    staticKey: true,
+  },
+);
 useRefreshSession(() => {
   refetch();
 });
